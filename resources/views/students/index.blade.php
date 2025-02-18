@@ -23,11 +23,20 @@
 
         <tr>
             <td>{{ $student->id }}</td>
-            <td>{{ $student->name }}</td>
+            <td><a href="{{ route('students.show', $student->id) }}">{{ $student->name }}</td>
             <td>{{ $student->age }}</td>
             <td>{{ $student->dob }}</td>
             <td>{{ $student->address }}</td>
             <td>{{ $student->is_final_year ? 'yes' : 'no' }}</td>
+            <td>
+                <a href="{{ route('students.edit', $student->id) }}">
+                    <button>Edit</button>
+                </a>
+                <form action="{{ route('students.destroy', $student->id) }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit">Delete</button>
+                </form>
         </tr>
         @endforeach
     </table>
@@ -35,6 +44,10 @@
     <a href="{{ route('students.create') }}">
         <button>create</button>
     </a>
+    <td>
+        
+      
+    </td>
 
 </body>
 </html>
